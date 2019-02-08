@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         questionLabel.text = allQuestions.list[questionNumber].questionText
+        updateUI()
        
         
     }
@@ -43,7 +44,7 @@ class ViewController: UIViewController {
     func updateUI() {
         scoreLabel.text = "Score:\(score)"
         progressLabel.text = "\(questionNumber+1)/13"
-        progressBar.frame.size.width = (view.frame.size.width/13) * CGFloat(questionNumber)
+        progressBar.frame.size.width = (view.frame.size.width/13) * CGFloat(questionNumber+1)
     }
     
 
@@ -51,6 +52,7 @@ class ViewController: UIViewController {
         
         if questionNumber <= 12 {
             questionLabel.text = allQuestions.list[questionNumber].questionText
+        updateUI()
         }
         else{
             let alert = UIAlertController(title:"Awesome" , message:"You have finshed all the questions, do you want to start over?" , preferredStyle:.alert )
@@ -69,11 +71,11 @@ class ViewController: UIViewController {
         let correctAnswer = allQuestions.list[questionNumber].answer
         if correctAnswer == pickedAnswer {
             score += 1
-          
         }
         else {
             print("wrong")
         }
+       
     }
     
     
